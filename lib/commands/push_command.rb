@@ -2,7 +2,7 @@
 
 class PushCommand
   def initialize(value)
-    @value = value
+    @value = value.to_i
   end
 
   def run(context)
