@@ -5,8 +5,12 @@ class PushCommand
     @value = value
   end
 
-  def run(stack)
-    stack.push(@value)
+  def run(context)
+    context.stack.push(@value)
+
+    context.pc += 1
+
+    context
   end
 
   def to_s

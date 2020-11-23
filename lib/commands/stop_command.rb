@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StopCommand
-  def run(_stack)
+  def run(_context)
     exit 0
   end
 
