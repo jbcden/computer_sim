@@ -2,8 +2,7 @@
 
 class Computer
   attr_reader :program_counter
-
-  alias_method :instruction_pointer, :program_counter
+  alias instruction_pointer program_counter
 
   def initialize(stack_size); end
 
