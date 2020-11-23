@@ -18,6 +18,9 @@ class Computer
     command = [command_name, arg].join(" ").strip
 
     @stack[@program_counter] = command
+    @program_counter += 1
+
+    self
   end
 
   def current_instruction

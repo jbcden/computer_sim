@@ -16,6 +16,15 @@ RSpec.describe Computer do
   end
 
   describe '#insert' do
+    it 'increments the program counter' do
+      computer = Computer.new(10)
+
+      computer.set_address(0)
+      computer.insert("PUSH", 10).insert("STOP")
+
+      expect(computer.program_counter).to eq(2)
+    end
+
     it 'pushes a command onto the stack' do
       computer = Computer.new(10)
 
@@ -34,6 +43,18 @@ RSpec.describe Computer do
 
       computer.set_address(0)
       expect(computer.current_instruction).to eq("PUSH 10")
+    end
+
+    it 'can be chained' do
+      computer = Computer.new(10)
+
+      computer.set_address(0)
+      computer.insert("PUSH", 10).insert("STOP")
+
+      computer.set_address(0)
+      expect(computer.current_instruction).to eq("PUSH 10")
+      computer.set_address(1)
+      expect(computer.current_instruction).to eq("STOP")
     end
   end
 end
