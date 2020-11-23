@@ -7,6 +7,7 @@ class PushCommand
 
   def run(stack)
     stack.push(@value)
+    stack.program_counter += 1
   end
 
   def to_s
