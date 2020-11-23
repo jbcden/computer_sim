@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Computer
-  attr_reader :program_counter
+  attr_reader :program_counter, :stack
   alias instruction_pointer program_counter
 
   def initialize(stack_size)
@@ -10,6 +10,8 @@ class Computer
 
   def set_address(address)
     @program_counter = address
+
+    self
   end
 
   # NOTE: currently all commands have at most 1 argument, we could

@@ -13,6 +13,14 @@ RSpec.describe Computer do
 
       expect(computer.program_counter).to eq(22)
     end
+
+    it 'can be chained' do
+      computer = Computer.new(30)
+
+      computer.set_address(22).set_address(0)
+
+      expect(computer.program_counter).to eq(0)
+    end
   end
 
   describe '#insert' do
