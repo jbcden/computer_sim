@@ -25,5 +25,15 @@ RSpec.describe Computer do
       computer.set_address(0)
       expect(computer.current_instruction).to eq("STOP")
     end
+
+    it 'can push a command with an argument onto the stack' do
+      computer = Computer.new(10)
+
+      computer.set_address(0)
+      computer.insert("PUSH", 10)
+
+      computer.set_address(0)
+      expect(computer.current_instruction).to eq("PUSH 10")
+    end
   end
 end
