@@ -2,6 +2,7 @@
 
 require_relative './command_builder'
 require_relative './context'
+require_relative './commands/null_command.rb'
 
 class Computer
   attr_reader :program_counter, :stack
@@ -34,7 +35,7 @@ class Computer
 
   def execute
     @stack = @stack.map do |command_str|
-      next nil unless command_str
+      next NullCommand.new unless command_str
 
       command, arg = command_str.split(" ")
       CommandBuilder.build(command, arg)
