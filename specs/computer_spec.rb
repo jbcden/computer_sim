@@ -65,4 +65,18 @@ RSpec.describe Computer do
       expect(computer.current_instruction).to eq("STOP")
     end
   end
+
+  describe '#execute' do
+    it 'executes the program from the stack' do
+      computer = Computer.new(10)
+
+      computer.set_address(0)
+      computer.insert("PUSH", 10).insert("PRINT").insert("STOP")
+      computer.set_address(0)
+
+      expect do
+        computer.execute
+      end.to output(10).to_stdout
+    end
+  end
 end

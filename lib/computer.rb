@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require_relative './command_builder'
+require_relative './context'
+require_relative './commands/null_command.rb'
+
 class Computer
   attr_reader :program_counter, :stack
   alias instruction_pointer program_counter
@@ -27,5 +31,23 @@ class Computer
 
   def current_instruction
     @stack[@program_counter]
+  end
+
+  def execute
+    @stack = @stack.map do |command_str|
+      next NullCommand.new unless command_str
+
+      command, arg = command_str.split(" ")
+      CommandBuilder.build(command, arg)
+    end
+
+    loop do
+      context = Context.new(stack: @stack, pc: @program_counter)
+
+      new_context = @stack[@program_counter].run(context)
+
+      @stack = new_context.stack
+      @program_counter = new_context.pc
+    end
   end
 end
