@@ -4,6 +4,9 @@ require_relative './command_builder'
 require_relative './context'
 require_relative './commands/null_command.rb'
 
+# Things to improve:
+# 1. stack grows and shrinks
+# 2. nothing stops data part of stack from going into the program space
 class Computer
   attr_reader :program_counter, :stack
   alias instruction_pointer program_counter
